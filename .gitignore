@@ -1,2 +1,5 @@
 #Jetbrains Configs
 *.idea
+
+#Node Modules
+*node_modules

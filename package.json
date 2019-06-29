@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/photonized/avo.git"
   },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
