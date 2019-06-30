@@ -15,7 +15,7 @@ class Block {
 
     /**
      * Adding a transaction to the environment.
-     * @param {transaction} transaction
+     * @param {Transaction} transaction
      */
     addTransaction(transaction) {
         this.transactions.push(transaction);

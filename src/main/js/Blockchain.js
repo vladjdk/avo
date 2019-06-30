@@ -14,12 +14,12 @@ class Blockchain {
 
     /**
      * Adding a block to the chain.
-     * @param {Block} the block to add
+     * @param {Block} block
      */
     addBlock(block) {
         if(this.blocks.length === 0) {
             block.previousHash = "0000000000000000";
-            block.hash = this.generateHash(block)
+            block.hash = Blockchain.generateHash(block)
         }
 
         this.blocks.push(block);
@@ -39,7 +39,7 @@ class Blockchain {
         let previousBlock = this.getPreviousBlock();
         block.index = this.blocks.length;
         block.previousHash = previousBlock.hash;
-        block.hash = this.generateHash(block);
+        block.hash = Blockchain.generateHash(block);
         return block
     }
 
@@ -47,7 +47,7 @@ class Blockchain {
      * Generates a new hash for the block.
      * @param {Block} block
      */
-    generateHash(block){
+    static generateHash(block){
         let hash = sha256(block.key)
 
         while(hash.startsWith("0000")) {
