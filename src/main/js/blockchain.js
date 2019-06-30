@@ -31,7 +31,8 @@ class blockchain {
      * @return {block} the next block in the chain.
      */
     getNextBlock(transactions) {
-        let block = new block();
+        let block =
+            new block();
         transactions.forEach(function(transaction) {
             block.addTransaction(transaction)
         });
