@@ -1,6 +1,4 @@
-let transaction = require('./Transaction');
-
-class Block {
+class block {
 
     /**
      * Constructing the block object.
@@ -31,4 +29,4 @@ class Block {
 
 }
 
-module.exports = Block;
+module.exports = block;
