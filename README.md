@@ -1,4 +1,4 @@
-# AVO [![Build Status](https://travis-ci.com/photonized/avo.svg?branch=master)](https://travis-ci.com/photonized/avo)
+# AVO [![Build Status](https://travis-ci.com/photonized/avo.svg?branch=master)](https://travis-ci.com/photonized/avo) [![DeepScan grade](https://deepscan.io/api/teams/4396/projects/6165/branches/49706/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=4396&pid=6165&bid=49706)
 
 ### Founders: Amit, Vlad, Omer
 #### Based in: uOttawa
