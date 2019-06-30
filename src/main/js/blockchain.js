@@ -1,11 +1,11 @@
-let Block = require('./block');
-let sha256 = require('js-sha256');
+let block = require('./block');
+let sha256 = require('js-sha256').sha256;
 
-class Blockchain {
+class blockchain {
 
     /**
      * Constructing the blockchain.
-     * @param {Block} genesisBlock
+     * @param {block} genesisBlock
      */
     constructor(genesisBlock) {
         this.blocks = [];
@@ -14,12 +14,12 @@ class Blockchain {
 
     /**
      * Adding a block to the chain.
-     * @param {Block} block
+     * @param {block} block
      */
     addBlock(block) {
         if(this.blocks.length === 0) {
             block.previousHash = "0000000000000000";
-            block.hash = Blockchain.generateHash(block)
+            block.hash = blockchain.generateHash(block)
         }
 
         this.blocks.push(block);
@@ -28,10 +28,10 @@ class Blockchain {
     /**
      * Getting the next block in the chain.
      * @param {Transaction[]} transactions.
-     * @return {Block} the next block in the chain.
+     * @return {block} the next block in the chain.
      */
     getNextBlock(transactions) {
-        let block = new Block();
+        let block = new block();
         transactions.forEach(function(transaction) {
             block.addTransaction(transaction)
         });
@@ -39,16 +39,16 @@ class Blockchain {
         let previousBlock = this.getPreviousBlock();
         block.index = this.blocks.length;
         block.previousHash = previousBlock.hash;
-        block.hash = Blockchain.generateHash(block);
+        block.hash = blockchain.generateHash(block);
         return block
     }
 
     /**
      * Generates a new hash for the block.
-     * @param {Block} block
+     * @param {block} block
      */
     static generateHash(block){
-        let hash = sha256(block.key)
+        let hash = sha256(block.key);
 
         while(hash.startsWith("0000")) {
             block.nonce++;
@@ -68,4 +68,4 @@ class Blockchain {
     }
 }
 
-module.exports = Blockchain;
+module.exports = blockchain;
