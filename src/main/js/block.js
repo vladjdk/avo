@@ -13,7 +13,7 @@ class block {
 
     /**
      * Adding a transaction to the environment.
-     * @param {Transaction} transaction
+     * @param {transaction} transaction
      */
     addTransaction(transaction) {
         this.transactions.push(transaction);

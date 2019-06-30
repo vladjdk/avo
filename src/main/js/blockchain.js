@@ -27,7 +27,7 @@ class blockchain {
 
     /**
      * Getting the next block in the chain.
-     * @param {Transaction[]} transactions.
+     * @param {transaction[]} transactions.
      * @return {block} the next block in the chain.
      */
     getNextBlock(transactions) {
