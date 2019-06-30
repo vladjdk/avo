@@ -1,4 +1,4 @@
-let Block = require('./Block');
+let Block = require('./block');
 let sha256 = require('js-sha256');
 
 class Blockchain {
