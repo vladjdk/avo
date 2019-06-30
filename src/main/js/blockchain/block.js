@@ -1,5 +1,4 @@
 const crypto = require('crypto');
-const Transaction = require('./transaction');
 
 class Block {
     constructor(index, previousBlockHash, previousProof, transactions) {
