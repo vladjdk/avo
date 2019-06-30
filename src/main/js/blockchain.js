@@ -31,17 +31,16 @@ class blockchain {
      * @return {block} the next block in the chain.
      */
     getNextBlock(transactions) {
-        let block =
-            new block();
+        let blk = new block();
         transactions.forEach(function(transaction) {
-            block.addTransaction(transaction)
+            blk.addTransaction(transaction)
         });
 
         let previousBlock = this.getPreviousBlock();
-        block.index = this.blocks.length;
-        block.previousHash = previousBlock.hash;
-        block.hash = blockchain.generateHash(block);
-        return block
+        blk.index = this.blocks.length;
+        blk.previousHash = previousBlock.hash;
+        blk.hash = blockchain.generateHash(blk);
+        return blk
     }
 
     /**
