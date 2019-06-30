@@ -1,6 +1,6 @@
-let Block = require('../src/main/js/block');
-let Transaction = require('../src/main/js/transaction');
-let Blockchain = require('../src/main/js/blockchain');
+let Block = require('../src/main/js/blockchain/block');
+let Transaction = require('../src/main/js/blockchain/transaction');
+let Blockchain = require('../src/main/js/blockchain/blockchain');
 
 // create genesis block
 let genesisBlock = new Block();
