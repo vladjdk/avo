@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "jasmine": "^3.4.0",
+    "jest": "^24.8.0",
     "socket.io": "^2.2.0"
   },
   "keywords": [],
