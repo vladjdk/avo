@@ -20,7 +20,6 @@
     "socket.io-client": "latest"
   },
   "devDependencies": {
-    "jasmine": "^3.4.0",
     "jest": "^24.8.0",
     "socket.io": "^2.2.0"
   },
