@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "socket.io-client": "latest"
   },
   "devDependencies": {
-    "jasmine": "^3.4.0",
+    "jest": "^24.8.0",
     "socket.io": "^2.2.0"
   },
   "keywords": [],
