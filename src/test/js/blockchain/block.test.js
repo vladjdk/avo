@@ -1,3 +1,4 @@
+let Block = require('src/main/js/blockchain/block');
 describe('Block', () => {
 
   const previousBlockHash = 'prev-hash';
@@ -8,7 +9,7 @@ describe('Block', () => {
   const block = new Block(index, previousBlockHash, previousProof, transactions);
   
 
-  it('has a timestamp, lastHash, hash, and data property', () => {
+  test('has a timestamp, lastHash, hash, and data property', () => {
     expect(block.previousBlockHash).toEqual(previousBlockHash);
     expect(block.index).toEqual(index);
     expect(block.previousProof).toEqual(previousProof);
