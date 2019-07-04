@@ -1,4 +1,5 @@
-let Block = require('src/main/js/blockchain/block');
+import Block from "src/main/js/blockchain/block";
+
 describe('Block', () => {
 
   const previousBlockHash = 'prev-hash';
