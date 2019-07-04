@@ -1,4 +1,4 @@
-import Block from "src/main/js/blockchain/block";
+const Block = require('../../../main/js/blockchain/block');
 
 describe('Block', () => {
 
