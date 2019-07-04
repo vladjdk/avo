@@ -7,6 +7,7 @@ const socketListeners = (socket, chain) => {
     socket.on(SocketActions.ADD_TRANSACTION, (sender, receiver, amount) => {
         const transaction = new Transaction(sender, receiver, amount);
         chain.newTransaction(transaction);
+        //TODO: Fix getDetails.
         console.info(`Added transaction: ${JSON.stringify(transaction.getDetails(), null, '\t')}`);
     });
 

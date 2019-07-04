@@ -10,12 +10,13 @@ const SocketActions  = require('./constants');
 
 const socketListeners = require('./socketListeners');
 
-const { PORT } = process.env;
+const PORT = 3000;
 
 const blockChain = new BlockChain(null, io);
 
 app.use(bodyParser.json());
 
+//TODO: Find a way to send these requests and add layers of security
 app.post('/nodes', (req, res) => {
     const { host, port } = req.body;
     const { callback } = req.query;
@@ -42,7 +43,7 @@ app.post('/transaction', (req, res) => {
 });
 
 app.get('/chain', (req, res) => {
-    res.json(blockChain.toArray()).end();
+    res.json(blockChain.blocks).end();
 });
 
 io.on('connection', (socket) => {
@@ -53,5 +54,5 @@ io.on('connection', (socket) => {
 });
 
 blockChain.addNode(socketListeners(client(`http://localhost:${PORT}`), blockChain));
-
+console.log(PORT);
 httpServer.listen(PORT, () => console.info(`Express server running on ${PORT}...`));
