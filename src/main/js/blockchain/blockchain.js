@@ -1,13 +1,11 @@
 const Block = require('./block');
-const actions = require('../constants');
 const { generateProof, isProofValid } = require('../utils/proof');
 
 class Blockchain {
-    constructor(blocks, io) {
+    constructor(blocks) {
         this.blocks = blocks || [new Block(0, 1, 0, [])];
         this.currentTransactions = [];
         this.nodes = [];
-        this.io = io;
     }
 
     addNode(node) {
@@ -21,7 +19,6 @@ class Blockchain {
     mineBlock(block) {
         this.blocks.push(block);
         console.log('Mined block: ' + block.index);
-        this.io.emit(actions.END_MINING, this.toArray());
     }
 
     async newTransaction(transaction) {

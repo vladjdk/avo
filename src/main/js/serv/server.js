@@ -4,15 +4,20 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-const chain = new Blockchain()
-
-app.get('/', (request, response) => {
-    response.send('Hello from Express!');
-});
+const chain = new Blockchain();
 
 app.get('/lastblock', (request, response) => {
-    response.json(blockchain.lastBlock());
-})
+    response.json(chain.lastBlock());
+});
+
+app.post('/transaction', (request, response) => {
+    const senderKey = request.body.sender.key;
+    const senderSignature = request.body.sender.signature;
+    const amount = request.body.sender.amount;
+    const receiverAddress = request.body.receiver.address;
+
+
+});
 
 app.listen(PORT, (err) => {
     if(err) {
