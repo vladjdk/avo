@@ -14,7 +14,7 @@ class Wallet {
                 type: 'pkcs8',
                 format: 'pem',
                 cipher: 'aes-256-cbc',
-                passphrase: 'top secret'
+                passphrase: (Math.random() / Math.random() * Date.now()).toString()
             }
         }, (err, publicKey, privateKey) => {
             console.log(publicKey);
