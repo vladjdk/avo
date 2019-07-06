@@ -1,5 +1,5 @@
 const { generateKeyPair, createSign, createVerify } = require('crypto');
-require('promise');
+const promise = require('promise');
 
 class Wallet {
     constructor() {
@@ -17,20 +17,10 @@ class Wallet {
                 passphrase: 'top secret'
             }
         }, (err, publicKey, privateKey) => {
-            self.privateKey = privateKey;
-            self.publicKey = publicKey;
-            console.log(self)
+            console.log(publicKey);
+            console.log(privateKey);
         });
     }
 
-    getPrivateKey() {
-        return this.privateKey;
-    }
-
-    getPublicKey() {
-        return this.publicKey;
-    }
 }
-
 var wallet = new Wallet();
-console.log();
