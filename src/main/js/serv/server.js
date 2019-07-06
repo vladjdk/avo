@@ -14,7 +14,7 @@ app.post('/transaction', (request, response) => {
     const senderKey = request.body.sender.key;
     const senderSignature = request.body.sender.signature;
     const amount = request.body.sender.amount;
-    const receiverAddress = request.body.receiver.address;
+    const receiverKey = request.body.receiver.address;
 
 
 });
