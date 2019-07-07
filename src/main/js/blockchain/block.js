@@ -7,11 +7,13 @@ class Block {
         this.previousBlockHash = previousBlockHash;
         this.transactions = transactions;
         this.timestamp = Date.now();
+        this.hash = hashValue()
+        this.rando = 0;
     }
 
     hashValue() {
-        const { index, proof, transactions, timestamp } = this;
-        const blockString = `${index}-${proof}-${JSON.stringify(transactions)}-${timestamp}`;
+        const { index, proof, transactions, timestamp, rando } = this;
+        const blockString = `${index}-${proof}-${JSON.stringify(transactions)}-${timestamp}-${rando}`;
         const hashFunction = crypto.createHash('sha256');
         hashFunction.update(blockString);
         return hashFunction.digest('hex');
@@ -31,6 +33,15 @@ class Block {
 
     getPreviousBlockHash() {
         return this.previousBlockHash;
+    }
+
+    mineBlock(Diff) {
+        while (this.hash.substring(0, Diff) !== Array(Diff + 1).join("0")){
+            this.rando++;
+            this.hash = hashValue();
+        }
+
+        console.log("Block mined: " + this.hash);
     }
 }
 

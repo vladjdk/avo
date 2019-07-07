@@ -8,9 +8,13 @@ class Blockchain {
         this.currentTransactions = [];
         this.nodes = [];
         this.io = io;
+        this.difficulty = 2;
     }
 
     addNode(node) {
+        //need to have priveious hash when creating new block
+        node.previousBlockHash = this.hashvalue();
+        node.mineBlock(this.difficulty);
         this.nodes.push(node);
     }
 
@@ -18,11 +22,11 @@ class Blockchain {
      * Mining a block.
      * @param {Block} block
      */
-    mineBlock(block) {
+ /*   mineBlock(block) {
         this.blocks.push(block);
         console.log('Mined block: ' + block.index);
         this.io.emit(actions.END_MINING, this.toArray());
-    }
+    }*/
 
     async newTransaction(transaction) {
         this.currentTransactions.push(transaction);
@@ -45,6 +49,7 @@ class Blockchain {
             }
         }
     }
+
 
     lastBlock() {
         return this.blocks[this.blocks.length - 1];
@@ -69,5 +74,6 @@ class Blockchain {
         }
         return true;
     }
+
 }
 module.exports = Blockchain;
