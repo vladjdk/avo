@@ -19,8 +19,11 @@ class Wallet {
         }, (err, publicKey, privateKey) => {
             console.log(publicKey);
             console.log(privateKey);
+            self.publicKey = publicKey;
+            self.privateKey = privateKey;
         });
     }
 
 }
 var wallet = new Wallet();
+console.log(wallet.publicKey);
