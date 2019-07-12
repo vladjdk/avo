@@ -5,12 +5,15 @@
 #### Language Used: Node JS
 
 #### What is it?
-  AVO is a project made by 3 friends at the university of Ottawa with the goal of helping them learn about the blockchain environment. The blockchain is created from the ground up using JavaScript as the base language. This means that AVO does not depend on any environment, such as the Ethereum Blockchain. Once AVO is created, a coin will be added onto it, called the AVO Coin. The current status of the blockchain is: *LOCAL*, *CENTRALIZED*.
+  Avo is a project made by 3 students at the university of Ottawa with the goal of learning various skills and techniques involved with creating a blockchain from the ground up. This is meant to be a functional blockchain with a reward system, mining, p2p communication, and data structures like Merkle trees put into place to prevent common attacks like double spending and the 51% attack.
   
 #### Current Workflow
 - [x] Set up basic local blockchain boilerplate code
 - [x] Set up project and testing frameworks
-- [ ] Run AWS server indefinitely
+- [ ] Cryptography algorithms
+- [ ] Node communication
+- [ ] Block infrastructure
+- [ ] Deploy to AWS
 - [ ] Decentralize
 - [ ] Create a coin in ecosystem
 - [ ] Website
