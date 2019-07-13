@@ -4,7 +4,8 @@ const { generateProof, isProofValid } = require('../utils/proof');
 class Blockchain {
     constructor(blocks) {
         this.blocks = blocks || [new Block(0, 1, 0, [])];
-        this.currentTransactions = [];
+        //unconfirmed transactions
+        this.unconfirmed = [];
         this.nodes = [];
     }
 
@@ -16,31 +17,13 @@ class Blockchain {
      * Mining a block.
      * @param {Block} block
      */
-    mineBlock(block) {
+    pushBlock(block) {
         this.blocks.push(block);
         console.log('Mined block: ' + block.index);
     }
 
-    async newTransaction(transaction) {
-        this.currentTransactions.push(transaction);
-
-        //block size is 2
-        //TODO: Change the block size to something, or even make another threshold for mining the blocks.
-        if (this.currentTransactions.length === 2) {
-            console.info('Started mining the block...');
-            const previousBlock = this.lastBlock();
-            process.env.BREAK = false;
-            const block = new Block(previousBlock.getIndex() + 1,
-                previousBlock.hashValue(),
-                previousBlock.getProof(),
-                this.currentTransactions);
-            const { proof, dontMine } = await generateProof(previousBlock.getProof());
-            block.setProof(proof);
-            this.currentTransactions = [];
-            if(dontMine !== 'true') {
-                this.mineBlock(block)
-            }
-        }
+    newTransaction(txId) {
+        this.unconfirmed.push(txId)
     }
 
     lastBlock() {

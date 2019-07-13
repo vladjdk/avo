@@ -1,6 +1,5 @@
-const { generateKeyPair, createSign, createVerify createDiffieHellman} = require('crypto');
-const promise = require('promise');
-const util = require('util');
+const eccrypto = require('eccrypto');
+const crypto = require('crypto');
 
 class Wallet {
     constructor() {
