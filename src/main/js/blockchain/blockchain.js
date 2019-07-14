@@ -8,46 +8,13 @@ class Blockchain {
         this.unconfirmed = [];
         this.nodes = [];
     }
-
-    addNode(node) {
-        this.nodes.push(node);
-    }
-
-    /**
-     * Mining a block.
-     * @param {Block} block
-     */
-    pushBlock(block) {
-        this.blocks.push(block);
-        console.log('Mined block: ' + block.index);
-    }
-
-    newTransaction(txId) {
-        this.unconfirmed.push(txId)
-    }
-
-    lastBlock() {
-        return this.blocks[this.blocks.length - 1];
-    }
-
-    getLength() {
+    height() {
         return this.blocks.length;
     }
 
-    checkValidity() {
-        const { blocks } = this;
-        let previousBlock = blocks[0];
-        for (let index = 1; index < blocks.length; index++) {
-            const currentBlock = blocks[index];
-            if(currentBlock.getPreviousBlockHash() !== previousBlock.hashValue()) {
-                return false;
-            }
-            if (!isProofValid(previousBlock.getProof(), currentBlock.getProof())) {
-                return false;
-            }
-            previousBlock = currentBlock;
-        }
-        return true;
-    }
+    //I deleted everything inside of the blockchain class because most of it was
+    //useless to me at this point and it was just copied from the internet
+    //at a time where none of us understood what it meant. because of this,
+    //it'd be better to just start anew.
 }
 module.exports = Blockchain;
