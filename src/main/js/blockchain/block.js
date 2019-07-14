@@ -18,12 +18,12 @@ class Block {
         return hashFunction.digest('hex');
     }
 
-    //everything from here was also deleted, just like from the blockchain class.
-    //the more I read about blockchain, the more I understand it and the more flaws
-    //I find in the actual copied code that we have. We should add everything one by one
-    //instead of having a prebuilt package. This will allow everything to be just the way
-    //we want it and it'll also require complete understanding of the feature before
-    //implementing it.
+    /*everything from here was also deleted, just like from the blockchain class.
+    the more I read about blockchain, the more I understand it and the more flaws
+    I find in the actual copied code that we have. We should add everything one by one
+    instead of having a prebuilt package. This will allow everything to be just the way
+    we want it and it'll also require complete understanding of the feature before
+    implementing it.*/
 }
 
 module.exports = Block;
