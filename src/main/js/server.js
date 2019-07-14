@@ -1,58 +1,59 @@
-const app = require('express')();
 const bodyParser = require('body-parser');
-const httpServer = require('http').Server(app);
-const axios = require('axios');
-const io = require('socket.io')(httpServer);
-const client = require('socket.io-client');
+const express = require('express');
+const Blockchain = require('./blockchain/blockchain');
+const app = express();
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+const blockPath = '/home/vlad/Documents/avo/blockchain_save/blockchain';
+var blockchain;
+const PORT = 7888;
 
-const BlockChain = require('./blockchain/blockchain');
-const SocketActions  = require('./constants');
-
-const socketListeners = require('./socketListeners');
-
-const PORT = 3000;
-
-const blockChain = new BlockChain(null, io);
+try {
+    /*
+    * basically here there's going to be some sort of way to check if the file containing
+    * all the blocks exists, and if not, it creates a completely new blockchain
+    * object. Now that I think of it, the blockchain object shouldn't have all the
+    * blocks in it since thats going to be way too much data in memory. We can probably
+    * switch it from being a list of blocks to being a file that it reads from.
+    */
+    fs.readFileSync(blockPath);
+} catch (e) {
+    blockchain = new Blockchain();
+}
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-//TODO: Find a way to send these requests and add layers of security
-app.post('/nodes', (req, res) => {
-    const { host, port } = req.body;
-    const { callback } = req.query;
-    const node = `http://${host}:${port}`;
-    const socketNode = socketListeners(client(node), blockChain);
-    blockChain.addNode(socketNode, blockChain);
-    if (callback === 'true') {
-        console.info(`Added node ${node} back`);
-        res.json({ status: 'Added node Back' }).end();
-    } else {
-        axios.post(`${node}/nodes?callback=true`, {
-            host: req.hostname,
-            port: PORT,
-        });
-        console.info(`Added node ${node}`);
-        res.json({ status: 'Added node' }).end();
+//all these are basically the 'server side' of the node. Look at these functions
+//as something that is sent out and given rather than being requested.
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+});
+
+app.get('/transaction', (req, res) => {
+    //TODO: transactions
+    if(req.txid == null || req.pubKey == null || req.signature == null || req.address == null) {
+        res.send({err: 'nullError'});
+        res.end();
     }
 });
 
-app.post('/transaction', (req, res) => {
-    const { sender, receiver, amount } = req.body;
-    io.emit(SocketActions.ADD_TRANSACTION, sender, receiver, amount);
-    res.json({ message: 'transaction success' }).end();
+app.get('/height', (req, res) => {
+    res.send({height: blockchain.height()});
 });
 
-app.get('/chain', (req, res) => {
-    res.json(blockChain.blocks).end();
+app.get('/blocks', (req, res) => {
+    //TODO: Would probably be nice to
+    res.send({blocks: blockchain.blocks}) ;
 });
 
-io.on('connection', (socket) => {
-    console.info(`Socket connected, ID: ${socket.id}`);
-    socket.on('disconnect', () => {
-        console.log(`Socket disconnected, ID: ${socket.id}`);
-    });
+
+app.post('/sendChain', (req, res) => {
+    //TODO: getting a block sent to the server, verifying it using POF, and adding it to the current chain.
 });
 
-blockChain.addNode(socketListeners(client(`http://localhost:${PORT}`), blockChain));
-console.log(PORT);
-httpServer.listen(PORT, () => console.info(`Express server running on ${PORT}...`));
+
+app.listen(7888, () =>
+    console.log(`AVO listening on port ${PORT}`)
+);

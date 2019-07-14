@@ -1,73 +1,19 @@
 const Block = require('./block');
-const actions = require('../constants');
-const { generateProof, isProofValid } = require('../utils/proof');
 
 class Blockchain {
-    constructor(blocks, io) {
+    constructor(blocks) {
         this.blocks = blocks || [new Block(0, 1, 0, [])];
-        this.currentTransactions = [];
+        //unconfirmed transactions
+        this.unconfirmed = [];
         this.nodes = [];
-        this.io = io;
     }
-
-    addNode(node) {
-        this.nodes.push(node);
-    }
-
-    /**
-     * Mining a block.
-     * @param {Block} block
-     */
-    mineBlock(block) {
-        this.blocks.push(block);
-        console.log('Mined block: ' + block.index);
-        this.io.emit(actions.END_MINING, this.toArray());
-    }
-
-    async newTransaction(transaction) {
-        this.currentTransactions.push(transaction);
-
-        //block size is 2
-        //TODO: Change the block size to something, or even make another threshold for mining the blocks.
-        if (this.currentTransactions.length === 2) {
-            console.info('Started mining the block...');
-            const previousBlock = this.lastBlock();
-            process.env.BREAK = false;
-            const block = new Block(previousBlock.getIndex() + 1,
-                previousBlock.hashValue(),
-                previousBlock.getProof(),
-                this.currentTransactions);
-            const { proof, dontMine } = await generateProof(previousBlock.getProof());
-            block.setProof(proof);
-            this.currentTransactions = [];
-            if(dontMine !== 'true') {
-                this.mineBlock(block)
-            }
-        }
-    }
-
-    lastBlock() {
-        return this.blocks[this.blocks.length - 1];
-    }
-
-    getLength() {
+    height() {
         return this.blocks.length;
     }
 
-    checkValidity() {
-        const { blocks } = this;
-        let previousBlock = blocks[0];
-        for (let index = 1; index < blocks.length; index++) {
-            const currentBlock = blocks[index];
-            if(currentBlock.getPreviousBlockHash() !== previousBlock.hashValue()) {
-                return false;
-            }
-            if (!isProofValid(previousBlock.getProof(), currentBlock.getProof())) {
-                return false;
-            }
-            previousBlock = currentBlock;
-        }
-        return true;
-    }
+    /*I deleted everything inside of the blockchain class because most of it was
+    useless to me at this point and it was just copied from the internet
+    at a time where none of us understood what it meant. because of this,
+    it'd be better to just start anew.*/
 }
 module.exports = Blockchain;
