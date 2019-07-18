@@ -55,7 +55,7 @@ test('Signature verification using someone elses public key', () => {
 test('Creating a key from a private key should give you a public key as well', () => {
     const keyPair = crypto.generateKeys();
     const privKeyNoPublic = crypto.keyFromPrivate(keyPair.getPrivate());
-    console.log(privKeyNoPublic.getPublic());
+    expect(privKeyNoPublic.getPublic()).toBeDefined();
 });
 
 test('creating two keys from a private key should give you the same public key', () => {
