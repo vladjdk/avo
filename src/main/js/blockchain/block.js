@@ -15,12 +15,6 @@ class Block {
         return [index, proof, JSON.stringify(transactions), previousBlockHash, timestamp, nonce];
     }
 
-    //TODO: Create a crypto class that will contain all hashing and encrypting
-    hashValue() {
-        var {info} = this;
-        return crypto.sha256(info());
-    }
-
     setNonce(int) {
         this.nonce = int;
     }
