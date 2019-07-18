@@ -1,5 +1,3 @@
-var crypto = require('../utils/crypto');
-
 class Block {
     constructor(index, previousBlockHash, previousProof, transactions, nonce) {
         this.index = index;
