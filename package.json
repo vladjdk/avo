@@ -11,7 +11,7 @@
     "url": "git+https://github.com/photonized/avo.git"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "body-parser": "latest",
     "crypto-js": "^3.1.9-1",
     "eccrypto": "^1.1.1",
