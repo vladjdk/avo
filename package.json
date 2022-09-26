@@ -18,7 +18,7 @@
     "elliptic": "latest",
     "express": "latest",
     "js-sha256": "^0.9.0",
-    "pm2": "^3.5.1",
+    "pm2": "^5.2.0",
     "promise": "^8.0.3",
     "socket.io-client": "latest"
   },
